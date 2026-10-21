@@ -110,6 +110,10 @@
         <div class="store" id="store" style="--day:0; --night:1; --lit:1;">
           <div class="store__frame" id="storeFrame">
 
+            <!-- 3D 视口（Three.js 挂载点；WebGL 不可用时回退到下方 SVG） -->
+            <div class="store__3d" id="store3d" aria-hidden="true"></div>
+            <p class="store__drag">◐ 拖动旋转 · DRAG TO EXPLORE</p>
+
             <svg class="store__svg" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid meet"
                  role="img" aria-label="24 小时便利店场景，营业中">
               <defs>
@@ -399,7 +403,7 @@
               <span class="bd"></span><span class="bt">时间流动 · AUTO</span>
             </button>
 
-            <p class="store__hint">点击店内光点进入对应板块 · TAP THE GLOWING DOTS</p>
+            <p class="store__hint">拖动旋转场景 · 点击光点进入对应板块 · DRAG &amp; TAP THE GLOWING DOTS</p>
           </div>
         </div>
 
@@ -1040,6 +1044,7 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

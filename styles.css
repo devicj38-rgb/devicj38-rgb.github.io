@@ -714,6 +714,36 @@ sup {
   perspective: 1200px;
 }
 
+/* 3D 视口 */
+.store__3d {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  cursor: grab;
+  touch-action: none;
+}
+.store__3d.is-dragging { cursor: grabbing; }
+.store__3d canvas { display: block; width: 100%; height: 100%; }
+.store__frame.is-3d .store__svg { display: none; }
+.store__frame.is-3d .store__hot { z-index: 2; }
+
+.store__drag {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .22em;
+  color: var(--ink-3);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity .6s var(--ease);
+}
+.store__frame.is-3d .store__drag { opacity: .85; }
+.store__frame.is-3d.is-dragging-once .store__drag { opacity: 0; }
+
 .store__svg {
   display: block;
   width: 100%;
