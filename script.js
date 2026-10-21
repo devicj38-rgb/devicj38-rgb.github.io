@@ -635,6 +635,135 @@ const reduce   = () => window.matchMedia('(prefers-reduced-motion: reduce)').mat
   setInterval(render, 30 * 1000);
 })();
 
+/* ---------- 24H CONVENIENCE STORE (hero interactive scene) ---------- */
+(function storeScene(){
+  const store = $('#store');
+  if (!store) return;
+
+  const frame  = $('#storeFrame');
+  const timeEl = $('#storeTime');
+  const phEl   = $('#storePhase');
+  const range  = $('#storeRange');
+  const btnLit = $('#storeLights');
+  const btnAuto= $('#storeAuto');
+
+  /* --- 时间 → 昼夜 --- */
+  // daylight 曲线: 05:30 起 → 12:45 峰值 → 19:00 落
+  const daylightAt = (m) => {
+    const h = m / 60;
+    if (h <= 5.5 || h >= 19) return 0;
+    return Math.max(0, Math.sin(((h - 5.5) / 13.5) * Math.PI));
+  };
+  const phaseOf = (m) => {
+    const h = m / 60;
+    if (h < 5)   return ['深夜 · LATE NIGHT', 0];
+    if (h < 8)   return ['清晨 · DAWN', 1];
+    if (h < 11)  return ['上午 · MORNING', 2];
+    if (h < 14)  return ['正午 · MIDDAY', 3];
+    if (h < 17)  return ['下午 · AFTERNOON', 4];
+    if (h < 19)  return ['黄昏 · DUSK', 5];
+    if (h < 22)  return ['夜晚 · EVENING', 6];
+    return ['深夜 · LATE NIGHT', 0];
+  };
+  const pad = (n) => String(n).padStart(2, '0');
+
+  let minutes = range ? Number(range.value) : 1360;
+
+  function render() {
+    const m = ((minutes % 1440) + 1440) % 1440;
+    const d = daylightAt(m);
+    store.style.setProperty('--day',   d.toFixed(3));
+    store.style.setProperty('--night', (1 - d).toFixed(3));
+    if (timeEl) timeEl.textContent = `${pad(Math.floor(m / 60))}:${pad(Math.floor(m % 60))}`;
+    if (phEl) {
+      const [label] = phaseOf(m);
+      phEl.textContent = label;
+    }
+    if (range && Number(range.value) !== Math.round(m)) range.value = String(Math.round(m));
+  }
+  render();
+
+  if (range) {
+    range.addEventListener('input', () => { minutes = Number(range.value); render(); });
+  }
+
+  /* --- 自动时间流动 --- */
+  let timer = null;
+  if (btnAuto) {
+    btnAuto.addEventListener('click', () => {
+      const on = btnAuto.getAttribute('aria-pressed') === 'true';
+      if (on) {
+        clearInterval(timer); timer = null;
+        btnAuto.setAttribute('aria-pressed', 'false');
+      } else {
+        btnAuto.setAttribute('aria-pressed', 'true');
+        timer = setInterval(() => { minutes += 3; render(); }, 60);
+      }
+    });
+  }
+
+  /* --- 店内灯光开关 (24H 营业, 关灯 = 清扫模式) --- */
+  if (btnLit) {
+    btnLit.addEventListener('click', () => {
+      const on = btnLit.getAttribute('aria-pressed') === 'true';
+      btnLit.setAttribute('aria-pressed', on ? 'false' : 'true');
+      store.style.setProperty('--lit', on ? '0' : '1');
+      const t = btnLit.querySelector('.bt');
+      if (t) t.textContent = on ? '清扫中 · CLEANING' : '营业中 · OPEN';
+    });
+  }
+
+  /* --- 热点 → 平滑滚动到板块 --- */
+  const goTo = (sel) => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    if (window.__lenis) window.__lenis.scrollTo(el, { offset: -60, duration: 1.4 });
+    else el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+  $$('.store .hs').forEach((b) => {
+    const target = b.dataset.go;
+    if (!target) return;
+    b.setAttribute('aria-label', (b.querySelector('b') ? b.querySelector('b').textContent + ' — ' : '') + target.replace('#', ''));
+    b.addEventListener('click', () => goTo(target));
+    // 门: hover 自动滑开
+    if (b.classList.contains('hs--door') && frame) {
+      const open  = () => frame.classList.add('is-door');
+      const close = () => frame.classList.remove('is-door');
+      b.addEventListener('mouseenter', open);
+      b.addEventListener('mouseleave', close);
+      b.addEventListener('focus', open);
+      b.addEventListener('blur', close);
+    }
+  });
+
+  /* --- 鼠标视差 --- */
+  const soft = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!soft && fine && frame) {
+    const inner = frame.querySelector('.m24-scene-in');
+    const sheen = frame.querySelector('.m24-sheen');
+    frame.addEventListener('mousemove', (e) => {
+      const r = frame.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width  - .5;
+      const ny = (e.clientY - r.top)  / r.height - .5;
+      if (inner) inner.style.transform = `translate3d(${(nx * -14).toFixed(2)}px, ${(ny * -6).toFixed(2)}px, 0)`;
+      if (sheen) sheen.style.transform = `translate3d(${(nx * 26).toFixed(2)}px, 0, 0)`;
+    });
+    frame.addEventListener('mouseleave', () => {
+      if (inner) inner.style.transform = 'translate3d(0,0,0)';
+      if (sheen) sheen.style.transform = 'translate3d(0,0,0)';
+    });
+  }
+
+  /* --- 滚动视差 --- */
+  if (!soft && window.ScrollTrigger) {
+    gsap.fromTo('.store__frame', { y: 0 }, {
+      y: -60, ease: 'none',
+      scrollTrigger: { trigger: '.store', start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+  }
+})();
+
 /* ---------- REFRESH on fonts loaded ---------- */
 if (document.fonts && document.fonts.ready) {
   document.fonts.ready.then(() => ScrollTrigger.refresh());
