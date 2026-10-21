@@ -845,10 +845,23 @@ const reduce   = () => window.matchMedia('(prefers-reduced-motion: reduce)').mat
       return t;
     }
 
+    function tileTexture() {
+      const c = document.createElement('canvas');
+      c.width = c.height = 256;
+      const x = c.getContext('2d');
+      x.fillStyle = '#17110b'; x.fillRect(0, 0, 256, 256);
+      x.fillStyle = '#221a10';
+      x.fillRect(0, 0, 128, 128); x.fillRect(128, 128, 128, 128);
+      const t = new THREE.CanvasTexture(c);
+      t.wrapS = t.wrapT = THREE.RepeatWrapping;
+      t.repeat.set(9, 5);
+      return t;
+    }
+
     const mat = {
       wall:  new THREE.MeshLambertMaterial({ color: 0x0c0c0c }),
       wallIn:new THREE.MeshLambertMaterial({ color: 0x3a2a14, side: THREE.BackSide }),
-      floor: new THREE.MeshLambertMaterial({ color: 0x1c130a }),
+      floor: new THREE.MeshLambertMaterial({ map: tileTexture() }),
       trim:  new THREE.MeshLambertMaterial({ color: 0x171717 }),
       glass: new THREE.MeshBasicMaterial({ color: 0xaac6dd, transparent: true, opacity: 0.07 }),
       dark:  new THREE.MeshLambertMaterial({ color: 0x0d0a06 }),
@@ -899,7 +912,7 @@ const reduce   = () => window.matchMedia('(prefers-reduced-motion: reduce)').mat
     add(new THREE.BoxGeometry(20.4, 2.1, 0.7), mat.trim, 0, 8.15, 6.1);
     const fascia = new THREE.Mesh(
       new THREE.PlaneGeometry(11, 2.0),
-      new THREE.MeshBasicMaterial({ map: textTexture({ text: 'WQR MART', sub: '清榕便利店 · OPEN AROUND THE CLOCK', color: '#F1EEE7', font: '400 84px "Instrument Serif", serif', glow: 10 }), transparent: true })
+      new THREE.MeshBasicMaterial({ map: textTexture({ text: 'CONVENIENCE', sub: 'STORE · OPEN AROUND THE CLOCK', color: '#F1EEE7', w: 1024, h: 200, font: '400 96px "Instrument Serif", serif', subFont: '400 34px "JetBrains Mono", monospace', glow: 10 }), transparent: true })
     );
     fascia.position.set(0, 8.15, 6.47);
     storeG.add(fascia);
@@ -937,58 +950,133 @@ const reduce   = () => window.matchMedia('(prefers-reduced-motion: reduce)').mat
     floorPool.position.set(0, 0.26, 1.5);
     storeG.add(floorPool);
 
-    /* --- 货架 --- */
-    function shelf(px, pz) {
+    /* --- 共享几何 / 材质 --- */
+    const gBoard = new THREE.BoxGeometry(3.4, 0.08, 0.75);
+    const gRail  = new THREE.BoxGeometry(3.36, 0.11, 0.06);
+    const gPost  = new THREE.BoxGeometry(0.08, 3.6, 0.8);
+    const gGoods = new THREE.BoxGeometry(0.34, 0.42, 0.4);
+    const boardMat = new THREE.MeshLambertMaterial({ color: 0x5c4423 });
+    const railMat  = new THREE.MeshLambertMaterial({ color: 0xe8e0d0, emissive: 0x2c2822 });
+    const goodsMats = [0xe7bc7c, 0xc1863f, 0x8e6a3a, 0xf0d3a0, 0xa67b46, 0x6e5230, 0xd9a65f]
+      .map((c) => new THREE.MeshLambertMaterial({ color: c }));
+
+    /* --- 货架：4 层 + 价签条 + 端头堆头 --- */
+    function shelf(px, pz, rows) {
       const g = new THREE.Group();
-      const boardMat = new THREE.MeshLambertMaterial({ color: 0x5c4423 });
-      const palette = [0xe7bc7c, 0xc1863f, 0x8e6a3a, 0xf0d3a0, 0xa67b46, 0x6e5230, 0xd9a65f];
-      [1.05, 1.85, 2.65].forEach((y, row) => {
-        const b = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.08, 0.75), boardMat);
+      [0.95, 1.7, 2.45, 3.2].slice(0, rows || 4).forEach((y, row) => {
+        const b = new THREE.Mesh(gBoard, boardMat);
         b.position.y = y;
         g.add(b);
-        for (let i = 0; i < 7; i++) {
-          const p = new THREE.Mesh(
-            new THREE.BoxGeometry(0.34, 0.42, 0.4),
-            new THREE.MeshLambertMaterial({ color: palette[(i + row * 3) % palette.length] })
-          );
-          p.position.set(-1.45 + i * 0.48, y + 0.25, (i % 2 ? 0.12 : -0.08));
+        const rail = new THREE.Mesh(gRail, railMat);
+        rail.position.set(0, y + 0.09, 0.4);
+        g.add(rail);
+        for (let i = 0; i < 6; i++) {
+          const p = new THREE.Mesh(gGoods, goodsMats[(i + row * 2) % goodsMats.length]);
+          p.position.set(-1.38 + i * 0.5, y + 0.25, (i % 2 ? 0.14 : -0.1));
           g.add(p);
         }
       });
       [-1.75, 1.75].forEach((sx) => {
-        const s = new THREE.Mesh(new THREE.BoxGeometry(0.08, 2.9, 0.8), boardMat);
-        s.position.set(sx, 1.45, 0);
+        const s = new THREE.Mesh(gPost, boardMat);
+        s.position.set(sx, 1.8, 0);
         g.add(s);
       });
+      const stack = new THREE.Mesh(new THREE.BoxGeometry(0.7, 1.0, 0.7), goodsMats[(rows || 4) % goodsMats.length]);
+      stack.position.set(0, 0.5, -0.95);
+      g.add(stack);
       g.position.set(px, 0.24, pz);
       storeG.add(g);
       return g;
     }
-    shelf(-6.6, -2.4);
-    shelf(-2.6, -2.4);
+    // 前排（贴玻璃）+ 后排（走道纵深）
+    shelf(-6.6, -2.2, 4);
+    shelf(-2.4, -2.2, 4);
+    shelf(-6.6, -4.4, 4);
+    shelf(-2.4, -4.4, 4);
 
-    /* --- 冰柜 --- */
+    /* --- 冰柜：门框 / 层架 / 饮料 / 把手 --- */
     const cooler = new THREE.Group();
-    const cbody = new THREE.Mesh(new THREE.BoxGeometry(2.8, 3.3, 1.3), new THREE.MeshLambertMaterial({ color: 0x24333b, emissive: 0x0b1c22 }));
-    cbody.position.y = 1.65;
+    const cbody = new THREE.Mesh(new THREE.BoxGeometry(3.0, 3.4, 1.3), new THREE.MeshLambertMaterial({ color: 0x24333b, emissive: 0x0b1c22 }));
+    cbody.position.y = 1.7;
     cooler.add(cbody);
-    const cglow = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 2.7), new THREE.MeshBasicMaterial({ color: 0x7de3ff, transparent: true, opacity: 0.32 }));
-    cglow.position.set(0, 1.65, 0.68);
+    const cglow = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 2.9), new THREE.MeshBasicMaterial({ color: 0x7de3ff, transparent: true, opacity: 0.32 }));
+    cglow.position.set(0, 1.7, 0.68);
     cooler.add(cglow);
     const bottleMat = new THREE.MeshLambertMaterial({ color: 0xbff2ff, emissive: 0x1d3a44 });
+    const gBottle = new THREE.BoxGeometry(0.22, 0.52, 0.22);
     [0.95, 1.65, 2.35].forEach((y) => {
-      for (let i = 0; i < 6; i++) {
-        const b = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.5, 0.2), bottleMat);
-        b.position.set(-1.0 + i * 0.4, y, 0.45);
+      const bar = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.05, 0.5), new THREE.MeshLambertMaterial({ color: 0x2c4a58 }));
+      bar.position.set(0, y - 0.3, 0.4);
+      cooler.add(bar);
+      for (let i = 0; i < 8; i++) {
+        const b = new THREE.Mesh(gBottle, bottleMat);
+        b.position.set(-1.05 + i * 0.3, y, 0.42);
         cooler.add(b);
       }
     });
-    cooler.position.set(5.6, 0.24, -2.4);
+    [-1.35, 1.35].forEach((fx) => {
+      const f = new THREE.Mesh(new THREE.BoxGeometry(0.12, 3.4, 1.3), new THREE.MeshLambertMaterial({ color: 0x1a1a1a }));
+      f.position.set(fx, 1.7, 0);
+      cooler.add(f);
+    });
+    const cHandle = new THREE.Mesh(new THREE.BoxGeometry(0.06, 1.2, 0.06), new THREE.MeshBasicMaterial({ color: 0xdfeff7 }));
+    cHandle.position.set(1.15, 1.7, 0.72);
+    cooler.add(cHandle);
+    cooler.position.set(5.9, 0.24, -2.4);
     storeG.add(cooler);
 
-    /* --- 收银台 + 店员 --- */
-    add(new THREE.BoxGeometry(2.3, 1.05, 0.95), new THREE.MeshLambertMaterial({ color: 0x1b1208 }), 2.9, 0.77, 2.9);
-    add(new THREE.BoxGeometry(0.5, 0.35, 0.4), mat.dark, 2.6, 1.47, 2.75);
+    /* --- 右侧零食窄架 --- */
+    const snack = new THREE.Group();
+    [1.0, 1.8, 2.6].forEach((y, row) => {
+      const b = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.08, 0.6), boardMat);
+      b.position.y = y;
+      snack.add(b);
+      for (let i = 0; i < 5; i++) {
+        const p = new THREE.Mesh(gGoods, goodsMats[(i + row) % goodsMats.length]);
+        p.position.set(-0.8 + i * 0.42, y + 0.25, 0.05);
+        snack.add(p);
+      }
+    });
+    [-1.15, 1.15].forEach((sx) => {
+      const s = new THREE.Mesh(new THREE.BoxGeometry(0.07, 3.0, 0.62), boardMat);
+      s.position.set(sx, 1.5, 0);
+      snack.add(s);
+    });
+    snack.position.set(8.2, 0.24, -4.6);
+    storeG.add(snack);
+
+    /* --- 香烟柜（收银台背后墙面） --- */
+    const cig = new THREE.Group();
+    cig.add(new THREE.Mesh(new THREE.BoxGeometry(2.8, 1.9, 0.12), new THREE.MeshLambertMaterial({ color: 0x1a1208 })));
+    const packMats = [0xd9d3c4, 0xc98a3c, 0x9fb8c4, 0xe7bc7c, 0x8e6a3a].map((c) => new THREE.MeshLambertMaterial({ color: c }));
+    const gPack = new THREE.BoxGeometry(0.24, 0.3, 0.1);
+    for (let r = 0; r < 4; r++) {
+      for (let c = 0; c < 9; c++) {
+        const p = new THREE.Mesh(gPack, packMats[(r * 3 + c) % packMats.length]);
+        p.position.set(-1.12 + c * 0.28, -0.6 + r * 0.4, 0.1);
+        cig.add(p);
+      }
+    }
+    cig.position.set(2.9, 3.3, -5.45);
+    storeG.add(cig);
+
+    /* --- 收银区：收银机 / 微波炉 / 咖啡机 / 热食柜 --- */
+    add(new THREE.BoxGeometry(2.6, 1.05, 0.95), new THREE.MeshLambertMaterial({ color: 0x1b1208 }), 2.9, 0.77, 2.9);
+    add(new THREE.BoxGeometry(0.55, 0.4, 0.45), mat.dark, 2.15, 1.47, 2.8);
+    const regScreen = new THREE.Mesh(new THREE.PlaneGeometry(0.42, 0.24), new THREE.MeshBasicMaterial({ color: 0x7de3ff, transparent: true, opacity: 0.75 }));
+    regScreen.position.set(2.15, 1.58, 3.04);
+    storeG.add(regScreen);
+    add(new THREE.BoxGeometry(0.6, 0.36, 0.5), new THREE.MeshLambertMaterial({ color: 0x2b2118 }), 3.3, 1.48, 2.8);
+    add(new THREE.BoxGeometry(0.5, 0.8, 0.45), new THREE.MeshLambertMaterial({ color: 0x241a12 }), 3.95, 1.7, 2.8);
+    const coffeeGlow = new THREE.Mesh(new THREE.PlaneGeometry(0.3, 0.12), new THREE.MeshBasicMaterial({ color: 0xffb347, transparent: true, opacity: 0.8 }));
+    coffeeGlow.position.set(3.95, 1.92, 3.04);
+    storeG.add(coffeeGlow);
+    add(new THREE.BoxGeometry(1.3, 0.9, 0.7), new THREE.MeshLambertMaterial({ color: 0x2b2118 }), 1.0, 1.0, 1.6);
+    const hotGlow = new THREE.Mesh(new THREE.PlaneGeometry(1.15, 0.6), new THREE.MeshBasicMaterial({ color: 0xffb347, transparent: true, opacity: 0.35 }));
+    hotGlow.rotation.x = -Math.PI / 2;
+    hotGlow.position.set(1.0, 1.46, 1.6);
+    storeG.add(hotGlow);
+
     const clerk = new THREE.Group();
     const cBody = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.34, 1.15, 10), mat.dark);
     cBody.position.y = 0.62;
@@ -997,6 +1085,38 @@ const reduce   = () => window.matchMedia('(prefers-reduced-motion: reduce)').mat
     clerk.add(cBody, cHead);
     clerk.position.set(2.9, 1.3, 2.1);
     storeG.add(clerk);
+
+    /* --- 顾客（在走道里慢慢走） --- */
+    const customer = new THREE.Group();
+    const cuMat = new THREE.MeshLambertMaterial({ color: 0x0d0a06 });
+    const cuBody = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.32, 1.1, 10), cuMat);
+    cuBody.position.y = 0.58;
+    const cuHead = new THREE.Mesh(new THREE.SphereGeometry(0.2, 12, 10), cuMat);
+    cuHead.position.y = 1.3;
+    customer.add(cuBody, cuHead);
+    customer.position.set(-6.5, 0.24, -3.3);
+    storeG.add(customer);
+
+    /* --- 杂志架 --- */
+    const rack = new THREE.Group();
+    const rackFrame = new THREE.Mesh(new THREE.BoxGeometry(1.6, 1.3, 0.5), new THREE.MeshLambertMaterial({ color: 0x2b2118 }));
+    rackFrame.position.y = 0.65;
+    rack.add(rackFrame);
+    const magMats = [0xd8d2c4, 0xc98a3c, 0x7de3ff, 0xe7bc7c, 0x9fb8c4].map((c) => new THREE.MeshLambertMaterial({ color: c }));
+    for (let i = 0; i < 5; i++) {
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(0.34, 0.5), magMats[i]);
+      m.position.set(-0.6 + i * 0.3, 1.44, 0.08);
+      m.rotation.x = -0.22;
+      rack.add(m);
+    }
+    rack.position.set(7.6, 0.24, 2.4);
+    storeG.add(rack);
+
+    /* --- 购物篮 --- */
+    const basketMat = new THREE.MeshLambertMaterial({ color: 0x2a2018 });
+    for (let i = 0; i < 3; i++) {
+      add(new THREE.BoxGeometry(0.5, 0.26, 0.36), basketMat, -4.8, 0.4 + i * 0.16, 4.4);
+    }
 
     /* --- 滑动门 --- */
     const doorMat = new THREE.MeshBasicMaterial({ color: 0xbcd4e8, transparent: true, opacity: 0.12 });
@@ -1013,9 +1133,19 @@ const reduce   = () => window.matchMedia('(prefers-reduced-motion: reduce)').mat
     handleR.position.set(0.12, 3.45, 6.1);
     storeG.add(doorL, doorR, handleL, handleR);
 
+    /* --- 吊旗（促销挂旗） --- */
+    const buntings = [];
+    const buntMats = [0xff4500, 0xffb347, 0x7de3ff, 0xffe3b4].map((c) => new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: 0.72, side: THREE.DoubleSide }));
+    for (let i = 0; i < 7; i++) {
+      const b = new THREE.Mesh(new THREE.PlaneGeometry(0.9, 0.34), buntMats[i % buntMats.length]);
+      b.position.set(-8 + i * 2.7, 5.15, 1.2);
+      storeG.add(b);
+      buntings.push(b);
+    }
+
     /* --- 顶灯 --- */
     const lampMat = new THREE.MeshBasicMaterial({ color: 0xffe3b4 });
-    [-5.5, 0, 5.5].forEach((x) => {
+    [-8, -4, 0, 4, 8].forEach((x) => {
       const l = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.1, 0.4), lampMat);
       l.position.set(x, 6.4, -1);
       storeG.add(l);
@@ -1024,7 +1154,7 @@ const reduce   = () => window.matchMedia('(prefers-reduced-motion: reduce)').mat
     /* --- 台基字牌 --- */
     const plinthSign = new THREE.Mesh(
       new THREE.PlaneGeometry(9, 0.6),
-      new THREE.MeshBasicMaterial({ map: textTexture({ text: 'CONVENIENCE STORE · 24H · NO.24 南职大店', color: 'rgba(255,255,255,.55)', w: 1024, h: 64, font: '400 34px "JetBrains Mono", monospace', glow: 0 }), transparent: true, opacity: 0.7 })
+      new THREE.MeshBasicMaterial({ map: textTexture({ text: 'CONVENIENCE STORE · 24H · SELF-SERVICE', color: 'rgba(255,255,255,.55)', w: 1024, h: 64, font: '400 34px "JetBrains Mono", monospace', glow: 0 }), transparent: true, opacity: 0.7 })
     );
     plinthSign.position.set(0, 0.62, 6.16);
     storeG.add(plinthSign);
@@ -1148,6 +1278,14 @@ const reduce   = () => window.matchMedia('(prefers-reduced-motion: reduce)').mat
       innerGlow.material.opacity = lit * (0.06 + 0.12 * n);
       floorPool.material.opacity = lit * (0.25 + 0.75 * n);
       lampMat.color.setHex(lit ? 0xffe3b4 : 0x3a3a3a);
+
+      regScreen.material.opacity = lit * 0.75;
+      coffeeGlow.material.opacity = lit * 0.8;
+      hotGlow.material.opacity    = lit * 0.35;
+
+      // 挂旗轻摆 + 顾客在走道里走动
+      buntings.forEach((b, i) => { b.rotation.z = Math.sin(s * 1.2 + i * 0.7) * 0.09; });
+      customer.position.x = -7.2 + ((s * 0.55) % 10.5);
 
       const flick = t % 6500;
       openMat.opacity = (flick > 6100 && flick < 6200) || (flick > 6320 && flick < 6400) ? 0.25 : (0.6 + 0.4 * n);
