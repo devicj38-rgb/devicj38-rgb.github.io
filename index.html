@@ -40,7 +40,6 @@
     </div>
     <ul class="scroll-progress__dots" id="scrollDots">
       <li data-target="#hero" class="is-active"><span></span></li>
-      <li data-target="#resume"><span></span></li>
       <li data-target="#work"><span></span></li>
       <li data-target="#contact"><span></span></li>
     </ul>
@@ -69,10 +68,9 @@
       </a>
 
       <nav class="nav__links" aria-label="Primary">
-        <a href="#resume" class="magnetic" data-cursor="link"><span class="nav__num">01</span>Resume</a>
-        <a href="#work" class="magnetic" data-cursor="link"><span class="nav__num">02</span>Work</a>
-        <a href="#honors" class="magnetic" data-cursor="link"><span class="nav__num">03</span>Honors</a>
-        <a href="#contact" class="magnetic" data-cursor="link"><span class="nav__num">04</span>Hello</a>
+        <a href="#work" class="magnetic" data-cursor="link"><span class="nav__num">01</span>Work</a>
+        <a href="#honors" class="magnetic" data-cursor="link"><span class="nav__num">02</span>Honors</a>
+        <a href="#contact" class="magnetic" data-cursor="link"><span class="nav__num">03</span>Hello</a>
       </nav>
 
       <a href="#contact" class="nav__cta magnetic" data-cursor="link">
@@ -104,309 +102,6 @@
           <span class="hero__role">Fashion Design &amp; Moving Image · 服装设计与移动影像</span>
         </p>
 
-        <!-- =========================================================
-             24H CONVENIENCE STORE · 可互动场景（营业中）
-             ========================================================= -->
-        <div class="store" id="store" style="--day:0; --night:1; --lit:1;">
-          <div class="store__frame" id="storeFrame">
-
-            <!-- 3D 视口（Three.js 挂载点；WebGL 不可用时回退到下方 SVG） -->
-            <div class="store__3d" id="store3d" aria-hidden="true"></div>
-            <p class="store__drag">◐ 拖动旋转 · DRAG TO EXPLORE</p>
-
-            <svg class="store__svg" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid meet"
-                 role="img" aria-label="24 小时便利店场景，营业中">
-              <defs>
-                <linearGradient id="m24Sky" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#0A1018"/><stop offset="1" stop-color="#000000"/>
-                </linearGradient>
-                <linearGradient id="m24Day" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#43688C"/><stop offset=".55" stop-color="#1B2836"/><stop offset="1" stop-color="#000000"/>
-                </linearGradient>
-                <linearGradient id="m24In" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#4A3418"/><stop offset=".5" stop-color="#2A1C0C"/><stop offset="1" stop-color="#150E06"/>
-                </linearGradient>
-                <linearGradient id="m24Spill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#FFB347" stop-opacity=".34"/><stop offset="1" stop-color="#FFB347" stop-opacity="0"/>
-                </linearGradient>
-                <linearGradient id="m24Glass" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#ffffff" stop-opacity=".08"/>
-                  <stop offset=".42" stop-color="#ffffff" stop-opacity="0"/>
-                  <stop offset="1" stop-color="#ffffff" stop-opacity=".055"/>
-                </linearGradient>
-                <radialGradient id="m24Pool" cx=".5" cy=".5" r=".5">
-                  <stop offset="0" stop-color="#FFB347" stop-opacity=".42"/><stop offset="1" stop-color="#FFB347" stop-opacity="0"/>
-                </radialGradient>
-                <radialGradient id="m24Cool" cx=".5" cy=".45" r=".62">
-                  <stop offset="0" stop-color="#7DE3FF" stop-opacity=".32"/><stop offset="1" stop-color="#7DE3FF" stop-opacity="0"/>
-                </radialGradient>
-                <radialGradient id="m24Lamp" cx=".5" cy=".5" r=".5">
-                  <stop offset="0" stop-color="#FFD9A0" stop-opacity=".5"/><stop offset="1" stop-color="#FFD9A0" stop-opacity="0"/>
-                </radialGradient>
-                <radialGradient id="m24Street" cx=".5" cy=".5" r=".5">
-                  <stop offset="0" stop-color="#FFD9A0" stop-opacity=".5"/><stop offset="1" stop-color="#FFD9A0" stop-opacity="0"/>
-                </radialGradient>
-                <filter id="m24Glow" x="-80%" y="-80%" width="260%" height="260%">
-                  <feGaussianBlur stdDeviation="5" result="b"/>
-                  <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-                <filter id="m24Blur" x="-40%" y="-40%" width="180%" height="180%">
-                  <feGaussianBlur stdDeviation="9"/>
-                </filter>
-                <pattern id="m24Awn" width="56" height="32" patternUnits="userSpaceOnUse">
-                  <rect width="28" height="32" fill="#1E1E1E"/><rect x="28" width="28" height="32" fill="#101010"/>
-                </pattern>
-              </defs>
-
-              <!-- sky / daylight -->
-              <rect x="0" y="0" width="1200" height="500" fill="url(#m24Sky)"/>
-              <rect class="m24-daylight" x="0" y="0" width="1200" height="500" fill="url(#m24Day)"/>
-
-              <!-- sidewalk -->
-              <rect x="0" y="458" width="1200" height="42" fill="#080808"/>
-              <rect x="0" y="458" width="1200" height="1.5" fill="rgba(255,255,255,.07)"/>
-
-              <!-- light pool + window spill on the ground -->
-              <ellipse class="m24-pool" cx="600" cy="482" rx="500" ry="46" fill="url(#m24Pool)"/>
-              <g class="m24-spill" filter="url(#m24Blur)">
-                <rect x="150" y="458" width="350" height="46" fill="url(#m24Spill)"/>
-                <rect x="540" y="458" width="120" height="46" fill="url(#m24Spill)"/>
-                <rect x="710" y="458" width="340" height="46" fill="url(#m24Spill)"/>
-              </g>
-
-              <!-- street lamp -->
-              <g class="m24-post">
-                <ellipse cx="42" cy="150" rx="70" ry="70" fill="url(#m24Street)"/>
-                <rect x="39" y="146" width="5" height="312" fill="#151515"/>
-                <circle cx="41.5" cy="144" r="7" fill="#FFE0AC" filter="url(#m24Glow)"/>
-              </g>
-
-              <!-- building -->
-              <rect x="96" y="40" width="1008" height="420" fill="#0A0A0A" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
-
-              <!-- fascia / sign board -->
-              <rect x="96" y="40" width="1008" height="86" fill="#111111"/>
-              <rect x="96" y="126" width="1008" height="1" fill="rgba(255,255,255,.09)"/>
-
-              <text class="m24-neon" x="140" y="104">24H</text>
-              <text class="m24-brand" x="600" y="84">CONVENIENCE</text>
-              <text class="m24-sub"   x="600" y="108">STORE · OPEN AROUND THE CLOCK</text>
-
-              <g class="m24-open">
-                <rect x="946" y="62" width="122" height="44" rx="4" fill="#0C0C0C" stroke="rgba(255,179,71,.5)"/>
-                <text class="m24-open-t" x="1007" y="92">OPEN</text>
-              </g>
-
-              <!-- awning -->
-              <rect x="120" y="132" width="960" height="32" fill="url(#m24Awn)"/>
-              <rect x="112" y="164" width="976" height="6" rx="2" fill="#1A1A1A"/>
-
-              <!-- ============ INTERIOR (seen through glass) ============ -->
-              <g class="m24-scene-in">
-                <rect x="128" y="174" width="944" height="250" fill="url(#m24In)"/>
-
-                <!-- ceiling strip lights -->
-                <g class="m24-lamps">
-                  <rect x="196" y="184" width="184" height="6" rx="3" fill="#FFE3B4"/>
-                  <rect x="508" y="184" width="184" height="6" rx="3" fill="#FFE3B4"/>
-                  <rect x="820" y="184" width="184" height="6" rx="3" fill="#FFE3B4"/>
-                  <ellipse cx="288" cy="212" rx="176" ry="54" fill="url(#m24Lamp)"/>
-                  <ellipse cx="600" cy="212" rx="176" ry="54" fill="url(#m24Lamp)"/>
-                  <ellipse cx="912" cy="212" rx="176" ry="54" fill="url(#m24Lamp)"/>
-                </g>
-
-                <!-- LEFT: 货架 shelves -->
-                <g class="m24-shelves">
-                  <g transform="translate(150,246)">
-                    <rect x="0" y="20" width="336" height="3" fill="#5C4423"/>
-                    <rect x="10"  y="4" width="28" height="16" fill="#E7BC7C" opacity=".62"/>
-                    <rect x="52"  y="4" width="28" height="16" fill="#C1863F" opacity=".55"/>
-                    <rect x="94"  y="4" width="28" height="16" fill="#8E6A3A" opacity=".6"/>
-                    <rect x="136" y="4" width="28" height="16" fill="#F0D3A0" opacity=".5"/>
-                    <rect x="178" y="4" width="28" height="16" fill="#A67B46" opacity=".58"/>
-                    <rect x="220" y="4" width="28" height="16" fill="#6E5230" opacity=".62"/>
-                    <rect x="262" y="4" width="28" height="16" fill="#D9A65F" opacity=".55"/>
-                    <rect x="304" y="4" width="28" height="16" fill="#B98A50" opacity=".6"/>
-                  </g>
-                  <g transform="translate(150,300)">
-                    <rect x="0" y="20" width="336" height="3" fill="#5C4423"/>
-                    <rect x="10"  y="4" width="28" height="16" fill="#F0D3A0" opacity=".5"/>
-                    <rect x="52"  y="4" width="28" height="16" fill="#6E5230" opacity=".6"/>
-                    <rect x="94"  y="4" width="28" height="16" fill="#D9A65F" opacity=".58"/>
-                    <rect x="136" y="4" width="28" height="16" fill="#8E6A3A" opacity=".62"/>
-                    <rect x="178" y="4" width="28" height="16" fill="#E7BC7C" opacity=".52"/>
-                    <rect x="220" y="4" width="28" height="16" fill="#B98A50" opacity=".6"/>
-                    <rect x="262" y="4" width="28" height="16" fill="#C1863F" opacity=".55"/>
-                    <rect x="304" y="4" width="28" height="16" fill="#A67B46" opacity=".6"/>
-                  </g>
-                  <g transform="translate(150,354)">
-                    <rect x="0" y="20" width="336" height="3" fill="#5C4423"/>
-                    <rect x="10"  y="4" width="28" height="16" fill="#C1863F" opacity=".6"/>
-                    <rect x="52"  y="4" width="28" height="16" fill="#F0D3A0" opacity=".5"/>
-                    <rect x="94"  y="4" width="28" height="16" fill="#A67B46" opacity=".58"/>
-                    <rect x="136" y="4" width="28" height="16" fill="#E7BC7C" opacity=".55"/>
-                    <rect x="178" y="4" width="28" height="16" fill="#6E5230" opacity=".62"/>
-                    <rect x="220" y="4" width="28" height="16" fill="#D9A65F" opacity=".52"/>
-                    <rect x="262" y="4" width="28" height="16" fill="#B98A50" opacity=".6"/>
-                    <rect x="304" y="4" width="28" height="16" fill="#8E6A3A" opacity=".6"/>
-                  </g>
-                </g>
-
-                <!-- RIGHT: 冰柜 cooler -->
-                <g class="m24-cooler">
-                  <rect x="820" y="196" width="240" height="204" rx="6" fill="#0B1318" stroke="rgba(125,227,255,.28)"/>
-                  <rect x="820" y="196" width="240" height="204" rx="6" fill="url(#m24Cool)"/>
-                  <g opacity=".62">
-                    <rect x="836" y="216" width="208" height="3" fill="#2C4A58"/>
-                    <rect x="842" y="222" width="14" height="26" rx="3" fill="#9FE8FF"/>
-                    <rect x="862" y="222" width="14" height="26" rx="3" fill="#7DE3FF"/>
-                    <rect x="882" y="222" width="14" height="26" rx="3" fill="#BFF2FF"/>
-                    <rect x="902" y="222" width="14" height="26" rx="3" fill="#7DE3FF"/>
-                    <rect x="922" y="222" width="14" height="26" rx="3" fill="#9FE8FF"/>
-                    <rect x="942" y="222" width="14" height="26" rx="3" fill="#BFF2FF"/>
-                    <rect x="962" y="222" width="14" height="26" rx="3" fill="#7DE3FF"/>
-                    <rect x="982" y="222" width="14" height="26" rx="3" fill="#9FE8FF"/>
-                    <rect x="1002" y="222" width="14" height="26" rx="3" fill="#BFF2FF"/>
-                    <rect x="1022" y="222" width="14" height="26" rx="3" fill="#7DE3FF"/>
-
-                    <rect x="836" y="266" width="208" height="3" fill="#2C4A58"/>
-                    <rect x="842" y="272" width="14" height="26" rx="3" fill="#BFF2FF"/>
-                    <rect x="862" y="272" width="14" height="26" rx="3" fill="#9FE8FF"/>
-                    <rect x="882" y="272" width="14" height="26" rx="3" fill="#7DE3FF"/>
-                    <rect x="902" y="272" width="14" height="26" rx="3" fill="#9FE8FF"/>
-                    <rect x="922" y="272" width="14" height="26" rx="3" fill="#BFF2FF"/>
-                    <rect x="942" y="272" width="14" height="26" rx="3" fill="#7DE3FF"/>
-                    <rect x="962" y="272" width="14" height="26" rx="3" fill="#9FE8FF"/>
-                    <rect x="982" y="272" width="14" height="26" rx="3" fill="#BFF2FF"/>
-                    <rect x="1002" y="272" width="14" height="26" rx="3" fill="#7DE3FF"/>
-                    <rect x="1022" y="272" width="14" height="26" rx="3" fill="#9FE8FF"/>
-
-                    <rect x="836" y="316" width="208" height="3" fill="#2C4A58"/>
-                    <rect x="842" y="322" width="14" height="26" rx="3" fill="#7DE3FF"/>
-                    <rect x="862" y="322" width="14" height="26" rx="3" fill="#BFF2FF"/>
-                    <rect x="882" y="322" width="14" height="26" rx="3" fill="#9FE8FF"/>
-                    <rect x="902" y="322" width="14" height="26" rx="3" fill="#7DE3FF"/>
-                    <rect x="922" y="322" width="14" height="26" rx="3" fill="#BFF2FF"/>
-                    <rect x="942" y="322" width="14" height="26" rx="3" fill="#9FE8FF"/>
-                    <rect x="962" y="322" width="14" height="26" rx="3" fill="#7DE3FF"/>
-                    <rect x="982" y="322" width="14" height="26" rx="3" fill="#BFF2FF"/>
-                    <rect x="1002" y="322" width="14" height="26" rx="3" fill="#9FE8FF"/>
-                    <rect x="1022" y="322" width="14" height="26" rx="3" fill="#7DE3FF"/>
-                  </g>
-                </g>
-
-                <!-- snack rack + 收银台 counter -->
-                <g class="m24-counter">
-                  <rect x="706" y="238" width="96" height="3" fill="#5C4423"/>
-                  <rect x="712" y="222" width="18" height="16" fill="#E7BC7C" opacity=".55"/>
-                  <rect x="736" y="222" width="18" height="16" fill="#A67B46" opacity=".58"/>
-                  <rect x="760" y="222" width="18" height="16" fill="#D9A65F" opacity=".52"/>
-                  <rect x="784" y="222" width="18" height="16" fill="#8E6A3A" opacity=".6"/>
-                  <rect x="706" y="288" width="96" height="3" fill="#5C4423"/>
-                  <rect x="712" y="272" width="18" height="16" fill="#C1863F" opacity=".6"/>
-                  <rect x="736" y="272" width="18" height="16" fill="#F0D3A0" opacity=".5"/>
-                  <rect x="760" y="272" width="18" height="16" fill="#6E5230" opacity=".62"/>
-                  <rect x="784" y="272" width="18" height="16" fill="#B98A50" opacity=".58"/>
-
-                  <rect x="700" y="366" width="112" height="58" fill="#1B1208"/>
-                  <rect x="700" y="366" width="112" height="4" fill="#6B4E24"/>
-                  <rect x="722" y="348" width="34" height="20" rx="2" fill="#241708"/>
-                  <rect x="726" y="352" width="26" height="8" rx="1" fill="#7DE3FF" opacity=".45"/>
-                  <g class="m24-clerk">
-                    <circle cx="762" cy="332" r="9" fill="#150E05"/>
-                    <path d="M750 366 q12 -26 24 0 z" fill="#150E05"/>
-                  </g>
-                </g>
-
-                <!-- glass stickers -->
-                <g class="m24-tags">
-                  <rect x="168" y="196" width="48" height="18" rx="2" fill="rgba(255,69,0,.82)"/>
-                  <text class="m24-tag" x="192" y="209">HOT</text>
-                  <rect x="228" y="196" width="48" height="18" rx="2" fill="rgba(255,179,71,.8)"/>
-                  <text class="m24-tag" x="252" y="209">NEW</text>
-                  <rect x="740" y="196" width="60" height="18" rx="2" fill="rgba(125,227,255,.75)"/>
-                  <text class="m24-tag m24-tag--cool" x="770" y="209">ICE</text>
-                </g>
-              </g>
-
-              <!-- sliding glass door -->
-              <g class="m24-door">
-                <rect x="512" y="174" width="16" height="250" fill="#111111"/>
-                <rect x="680" y="174" width="16" height="250" fill="#111111"/>
-                <rect x="528" y="174" width="152" height="8" fill="#151515"/>
-                <rect class="m24-door-l" x="528" y="182" width="76" height="242" fill="url(#m24In)" stroke="rgba(255,255,255,.16)"/>
-                <rect class="m24-door-r" x="604" y="182" width="76" height="242" fill="url(#m24In)" stroke="rgba(255,255,255,.16)"/>
-                <rect class="m24-door-l-h" x="588" y="288" width="4" height="36" rx="2" fill="rgba(255,255,255,.34)"/>
-                <rect class="m24-door-r-h" x="616" y="288" width="4" height="36" rx="2" fill="rgba(255,255,255,.34)"/>
-              </g>
-
-              <!-- glass sheen + dark overlay (lights off) -->
-              <rect class="m24-sheen" x="128" y="174" width="944" height="250" fill="url(#m24Glass)"/>
-              <rect class="m24-dark"  x="128" y="174" width="944" height="250" fill="#050505"/>
-
-              <!-- window frame outline -->
-              <rect x="128" y="174" width="944" height="250" fill="none" stroke="rgba(255,255,255,.16)"/>
-              <rect x="128" y="200" width="944" height="1" fill="rgba(255,255,255,.10)"/>
-
-              <!-- plinth -->
-              <rect x="96" y="424" width="1008" height="36" fill="#141414"/>
-              <text class="m24-plinth" x="600" y="447">CONVENIENCE STORE · 24H · SELF-SERVICE</text>
-
-              <!-- welcome mat -->
-              <rect x="556" y="462" width="88" height="9" rx="2" fill="#1C1610"/>
-            </svg>
-
-            <!-- ===== 热点 ===== -->
-            <div class="store__hot">
-              <button class="hs" data-go="#work" style="--x:25%;--y:60%">
-                <span class="hs__dot"></span>
-                <span class="hs__tip"><b>橱窗</b>Selected Works · 02</span>
-              </button>
-              <button class="hs" data-go="#editorial" style="--x:77.9%;--y:60%">
-                <span class="hs__dot"></span>
-                <span class="hs__tip"><b>冰柜</b>Spider Vogue · 品牌</span>
-              </button>
-              <button class="hs" data-go="#resume" style="--x:62.5%;--y:79%">
-                <span class="hs__dot"></span>
-                <span class="hs__tip"><b>收银台</b>Resume · 01</span>
-              </button>
-              <button class="hs hs--door" data-go="#contact" style="--x:50%;--y:58%">
-                <span class="hs__dot"></span>
-                <span class="hs__tip"><b>入口</b>Contact · 04</span>
-              </button>
-              <button class="hs" data-go="#honors" style="--x:77.9%;--y:16.8%">
-                <span class="hs__dot"></span>
-                <span class="hs__tip"><b>海报墙</b>Honors · 03</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- ===== 控制条 ===== -->
-          <div class="store__hud">
-            <button class="store__btn store__btn--sign" id="storeLights" aria-pressed="true">
-              <span class="bd"></span><span class="bt">营业中 · OPEN</span>
-            </button>
-
-            <div class="store__clock">
-              <span class="store__time" id="storeTime">22:40</span>
-              <span class="store__phase" id="storePhase">夜间 · NIGHT</span>
-            </div>
-
-            <label class="store__slider">
-              <span class="store__slider-cap">00:00</span>
-              <input type="range" id="storeRange" min="0" max="1439" step="5" value="1360"
-                     aria-label="调整便利店时间">
-              <span class="store__slider-cap">24:00</span>
-            </label>
-
-            <button class="store__btn" id="storeAuto" aria-pressed="false">
-              <span class="bd"></span><span class="bt">时间流动 · AUTO</span>
-            </button>
-
-            <p class="store__hint">拖动旋转场景 · 点击光点进入对应板块 · DRAG &amp; TAP THE GLOWING DOTS</p>
-          </div>
-        </div>
-
         <div class="hero__bottom">
           <div class="hero__bottom-l">
             <p class="hero__author">Fashion Design <i>×</i> Moving Image</p>
@@ -433,39 +128,18 @@
           <span>Fashion design</span><span class="m-dot">✺</span>
           <span>Moving image</span><span class="m-dot">✺</span>
           <span>Twelve films</span><span class="m-dot">✺</span>
-          <span>One garment collection</span><span class="m-dot">✺</span>
+          <span>Visual storytelling</span><span class="m-dot">✺</span>
           <span>Fashion design</span><span class="m-dot">✺</span>
           <span>Moving image</span><span class="m-dot">✺</span>
           <span>Twelve films</span><span class="m-dot">✺</span>
-          <span>One garment collection</span><span class="m-dot">✺</span>
+          <span>Visual storytelling</span><span class="m-dot">✺</span>
         </div>
       </section>
 
-      <!-- RESUME — 简历图片（第二屏） -->
-      <section class="resume" id="resume">
-        <header class="section__head">
-          <span class="label">Resume · 01 / 简历</span>
-          <h2 class="section__title" data-split-chars>
-            <span class="line"><span class="inner">One page,</span></span>
-            <span class="line"><span class="inner">in <em>print</em>.</span></span>
-          </h2>
-        </header>
-
-        <figure class="resume__figure">
-          <a class="resume__sheet magnetic" href="assets/img/resume-source.jpg" target="_blank" rel="noopener" data-cursor="link" aria-label="View resume 查看简历原图">
-            <img src="assets/img/resume-source.jpg" alt="王清榕 QingRong Wang — Resume CV" loading="lazy">
-          </a>
-          <figcaption class="resume__caption">
-            <span class="resume__hint">Click to view full size · 点击查看原图</span>
-            <span class="resume__meta">Curriculum Vitae — 2026 · English / A4</span>
-          </figcaption>
-        </figure>
-      </section>
-
-      <!-- SELECTED WORK — 绝对主角, 6 张真实项目卡 -->
+<!-- SELECTED WORK — 绝对主角, 6 张真实项目卡 -->
       <section class="work" id="work">
         <header class="section__head">
-          <span class="label">Selected Works · 02 / 作品</span>
+          <span class="label">Selected Works · 01 / 作品</span>
           <h2 class="section__title" data-split-chars>
             <span class="line"><span class="inner">Selected</span></span>
             <span class="line"><span class="inner"><em>Works</em>.</span></span>
@@ -877,87 +551,10 @@
         </div>
       </section>
 
-      <!-- SPIDER VOGUE · personal brand editorial (full-bleed spread) -->
-      <section class="editorial" id="editorial">
-        <header class="section__head section__head--split">
-          <div>
-            <span class="label">Personal Brand · 自主品牌</span>
-            <h2 class="section__title" data-split-chars>
-              <span class="line"><span class="inner">Spider <em>Vogue</em> —</span></span>
-              <span class="line"><span class="inner">a small house of</span></span>
-              <span class="line"><span class="inner"><em>silk</em> &amp; <em>spine</em>.</span></span>
-            </h2>
-          </div>
-          <p class="editorial__intro">
-            Spider Vogue · a self-founded student label.<br/>
-            Spun from silk, thorn, entanglement and rupture —<br/>
-            four looks exploring wearable emotion and structure.
-          </p>
-        </header>
-
-        <div class="editorial__frame">
-          <!-- Left: large stage + caption + progress bar -->
-          <figure class="editorial__stage" id="editorialStage" data-tilt>
-            <div class="editorial__stack" id="editorialStack">
-              <div class="editorial__img is-active" data-i="0" style="background-image:url('assets/img/spider-vogue-01.png');"></div>
-              <div class="editorial__img" data-i="1" style="background-image:url('assets/img/spider-vogue-02.png');"></div>
-              <div class="editorial__img" data-i="2" style="background-image:url('assets/img/spider-vogue-03.png');"></div>
-              <div class="editorial__img" data-i="3" style="background-image:url('assets/img/spider-vogue-04.png');"></div>
-            </div>
-
-            <figcaption class="editorial__caption">
-              <span class="editorial__num" id="editorialNum">01 / 04</span>
-              <span class="editorial__name" id="editorialName">Loom I — Blue Silk Spider</span>
-              <span class="editorial__desc" id="editorialDesc">Asymmetric silk gown under a sculpted tulle veil — silk caught mid-spin / 2026</span>
-            </figcaption>
-
-            <div class="editorial__progress" aria-hidden="true">
-              <i id="editorialProgressBar"></i>
-            </div>
-          </figure>
-
-          <!-- Right: thumbnail switcher -->
-          <ul class="editorial__thumbs" id="editorialThumbs">
-            <li class="is-active" data-i="0" data-cursor="link">
-              <span class="thumb__num">I</span>
-              <span class="thumb__meta">
-                <span class="thumb__name">Blue Silk Spider</span>
-                <span class="thumb__cn">蓝丝蛛</span>
-              </span>
-              <span class="thumb__img" style="background-image:url('assets/img/spider-vogue-01.png');"></span>
-            </li>
-            <li data-i="1" data-cursor="link">
-              <span class="thumb__num">II</span>
-              <span class="thumb__meta">
-                <span class="thumb__name">Rooted Black</span>
-                <span class="thumb__cn">棘根</span>
-              </span>
-              <span class="thumb__img" style="background-image:url('assets/img/spider-vogue-02.png');"></span>
-            </li>
-            <li data-i="2" data-cursor="link">
-              <span class="thumb__num">III</span>
-              <span class="thumb__meta">
-                <span class="thumb__name">Cobweb Silver</span>
-                <span class="thumb__cn">银络</span>
-              </span>
-              <span class="thumb__img" style="background-image:url('assets/img/spider-vogue-03.png');"></span>
-            </li>
-            <li data-i="3" data-cursor="link">
-              <span class="thumb__num">IV</span>
-              <span class="thumb__meta">
-                <span class="thumb__name">Iron Bramble</span>
-                <span class="thumb__cn">铁棘</span>
-              </span>
-              <span class="thumb__img" style="background-image:url('assets/img/spider-vogue-04.png');"></span>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- HONORS — 极简, 不再是简历 -->
+<!-- HONORS — 极简, 不再是简历 -->
       <section class="honors" id="honors">
         <header class="section__head">
-          <span class="label">Honors · 03 / 荣誉</span>
+          <span class="label">Honors · 02 / 荣誉</span>
           <h2 class="section__title" data-split-chars>
             <span class="line"><span class="inner">A few things</span></span>
             <span class="line"><span class="inner">I <em>learned</em> from.</span></span>
@@ -991,7 +588,7 @@
 
       <!-- CONTACT — 一句话 + 一个按钮 -->
       <section class="contact" id="contact">
-        <span class="label contact__label">Contact · 04 / 联络</span>
+        <span class="label contact__label">Contact · 03 / 联络</span>
         <h2 class="contact__title" data-split-chars>
           <span class="line"><span class="inner">Want to swap a</span></span>
           <span class="line"><span class="inner"><em>sketchbook</em>?</span></span>
@@ -1004,7 +601,6 @@
         </a>
 
         <ul class="contact__elsewhere">
-          <li><a href="#resume" data-cursor="link">Resume · 简历</a></li>
           <li><a href="#" data-cursor="link">RED</a></li>
           <li><a href="#" data-cursor="link">Douyin</a></li>
           <li><a href="#" data-cursor="link">Bilibili</a></li>
@@ -1044,7 +640,6 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
