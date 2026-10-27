@@ -359,20 +359,6 @@ const reduce   = () => window.matchMedia('(prefers-reduced-motion: reduce)').mat
   }
 })();
 
-/* ---------- MARQUEE infinite ---------- */
-(function marquees(){
-  if (reduce()) return;
-  $$('.marquee__track').forEach(track => {
-    const speed = track.classList.contains('brands') ? 50 : 38;
-    gsap.to(track, {
-      xPercent: -50,
-      duration: speed,
-      ease: 'none',
-      repeat: -1,
-    });
-  });
-})();
-
 /* ---------- HERO blob parallax + video Ken Burns ---------- */
 (function heroMotion(){
   if (reduce()) return;
