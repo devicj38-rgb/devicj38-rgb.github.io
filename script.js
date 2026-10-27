@@ -373,24 +373,6 @@ const reduce   = () => window.matchMedia('(prefers-reduced-motion: reduce)').mat
   });
 })();
 
-/* ---------- HONORS item entrance ---------- */
-(function honors(){
-  if (reduce()) return;
-  $$('.honors__item').forEach((li, i) => {
-    gsap.set(li, { opacity: 0, y: 16 });
-    ScrollTrigger.create({
-      trigger: li,
-      start: 'top 92%',
-      once: true,
-      onEnter: () => gsap.to(li, {
-        opacity: 1, y: 0,
-        duration: .9, delay: i * 0.06,
-        ease: 'expo.out',
-      })
-    });
-  });
-})();
-
 /* ---------- HERO blob parallax + video Ken Burns ---------- */
 (function heroMotion(){
   if (reduce()) return;
