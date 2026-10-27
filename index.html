@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>王清榕 QingRong Wang — Personal Portfolio · 个人作品集</title>
-  <meta name="description" content="王清榕 QingRong Wang — personal portfolio of fashion design & moving-image works. 服装设计与移动影像 · 个人作品集。" />
+  <title>王清榕 — 个人作品集</title>
+  <meta name="description" content="王清榕的个人作品集，展示服装设计与影像创作。" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,7 +21,7 @@
   <!-- Loader -->
   <div class="loader" id="loader" aria-hidden="true">
     <div class="loader__inner">
-      <span class="loader__label">Opening · 正在打开</span>
+      <span class="loader__label">正在打开</span>
       <span class="loader__bar"><i></i></span>
       <span class="loader__count"><span id="loaderCount">0</span><i>%</i></span>
     </div>
@@ -30,7 +30,7 @@
   <!-- HUD: 跟随光标的大图预览 (hover 作品卡时显示) -->
   <div class="image-preview" id="imagePreview" aria-hidden="true">
     <div class="image-preview__inner"></div>
-    <span class="image-preview__label">View · 查看</span>
+    <span class="image-preview__label">查看</span>
   </div>
 
   <!-- HUD: 右侧滚动进度条 -->
@@ -49,7 +49,7 @@
   <div class="cursor" id="cursor" aria-hidden="true">
     <div class="cursor__dot"></div>
     <div class="cursor__ring">
-      <span class="cursor__label">View · 查看</span>
+      <span class="cursor__label">查看</span>
     </div>
     <div class="cursor__blend"></div>
   </div>
@@ -62,23 +62,23 @@
 
     <!-- Nav: 极简, 不带个人名字 -->
     <header class="nav" id="nav">
-      <a href="#top" class="nav__logo magnetic" data-cursor="link" aria-label="QingRong Wang">
+      <a href="#top" class="nav__logo magnetic" data-cursor="link" aria-label="王清榕">
         <span class="logo-dot"></span>
-        <span class="logo-label">QingRong Wang <sup>²⁶</sup></span>
+        <span class="logo-label">王清榕 <sup>²⁶</sup></span>
       </a>
 
-      <nav class="nav__links" aria-label="Primary">
-        <a href="#work" class="magnetic" data-cursor="link"><span class="nav__num">01</span>Work</a>
-        <a href="#honors" class="magnetic" data-cursor="link"><span class="nav__num">02</span>Honors</a>
-        <a href="#contact" class="magnetic" data-cursor="link"><span class="nav__num">03</span>Hello</a>
+      <nav class="nav__links" aria-label="主导航">
+        <a href="#work" class="magnetic" data-cursor="link"><span class="nav__num">01</span>作品</a>
+        <a href="#honors" class="magnetic" data-cursor="link"><span class="nav__num">02</span>荣誉</a>
+        <a href="#contact" class="magnetic" data-cursor="link"><span class="nav__num">03</span>联系</a>
       </nav>
 
       <a href="#contact" class="nav__cta magnetic" data-cursor="link">
         <span class="nav__cta-dot"></span>
-        <span>Available · 2026</span>
+        <span>欢迎合作 · 2026</span>
       </a>
 
-      <button class="nav__menu" id="menuBtn" aria-label="Open menu">
+      <button class="nav__menu" id="menuBtn" aria-label="打开菜单">
         <span></span><span></span>
       </button>
     </header>
@@ -89,22 +89,22 @@
       <section class="hero" id="hero">
         <div class="hero__meta">
           <span class="dot"></span>
-          <span>Personal Portfolio · 2023 — 2026</span>
+          <span>个人作品集 · 2023 — 2026</span>
         </div>
 
-        <h1 class="hero__title" aria-label="Personal Portfolio 个人作品集">
-          <span class="line"><span class="inner">Personal</span></span>
-          <span class="line"><span class="inner"><em>Portfolio</em>.</span></span>
+        <h1 class="hero__title" aria-label="个人作品集">
+          <span class="line"><span class="inner">个人</span></span>
+          <span class="line"><span class="inner"><em>作品集</em>.</span></span>
         </h1>
 
         <p class="hero__lede">
-          <span class="hero__name">王清榕 <i>/</i> <em>QingRong Wang</em></span>
-          <span class="hero__role">Fashion Design &amp; Moving Image · 服装设计与移动影像</span>
+          <span class="hero__name">王清榕</span>
+          <span class="hero__role">服装设计与影像创作</span>
         </p>
 
         <div class="hero__bottom">
           <div class="hero__bottom-l">
-            <p class="hero__author">Fashion Design <i>×</i> Moving Image</p>
+            <p class="hero__author">服装设计 <i>×</i> 影像创作</p>
             <span class="label">南宁职业技术大学 · 艺术设计 服装设计方向</span>
           </div>
           <a href="#work" class="scroll-cue magnetic" data-cursor="link">
@@ -112,7 +112,7 @@
               <rect x="1.2" y="1.2" width="21.6" height="33.6" rx="11" fill="none" stroke="currentColor" stroke-width="1.4"/>
               <circle class="scroll-cue__ball" cx="12" cy="9" r="2.4" fill="currentColor"/>
             </svg>
-            <span>Scroll · 滚</span>
+            <span>向下浏览</span>
           </a>
         </div>
 
@@ -125,29 +125,26 @@
       <!-- MARQUEE STRIP -->
       <section class="marquee marquee--ribbon" aria-hidden="true">
         <div class="marquee__track">
-          <span>Fashion design</span><span class="m-dot">✺</span>
-          <span>Moving image</span><span class="m-dot">✺</span>
-          <span>Twelve films</span><span class="m-dot">✺</span>
-          <span>Visual storytelling</span><span class="m-dot">✺</span>
-          <span>Fashion design</span><span class="m-dot">✺</span>
-          <span>Moving image</span><span class="m-dot">✺</span>
-          <span>Twelve films</span><span class="m-dot">✺</span>
-          <span>Visual storytelling</span><span class="m-dot">✺</span>
+          <span>服装设计</span><span class="m-dot">✺</span>
+          <span>影像创作</span><span class="m-dot">✺</span>
+          <span>十二件影像</span><span class="m-dot">✺</span>
+          <span>视觉叙事</span><span class="m-dot">✺</span>
+          <span>服装设计</span><span class="m-dot">✺</span>
+          <span>影像创作</span><span class="m-dot">✺</span>
+          <span>十二件影像</span><span class="m-dot">✺</span>
+          <span>视觉叙事</span><span class="m-dot">✺</span>
         </div>
       </section>
 
 <!-- SELECTED WORK — 绝对主角, 6 张真实项目卡 -->
       <section class="work" id="work">
         <header class="section__head">
-          <span class="label">Selected Works · 01 / 作品</span>
+          <span class="label">01 / 作品精选</span>
           <h2 class="section__title" data-split-chars>
-            <span class="line"><span class="inner">Selected</span></span>
-            <span class="line"><span class="inner"><em>Works</em>.</span></span>
+            <span class="line"><span class="inner">精选</span></span>
+            <span class="line"><span class="inner"><em>作品</em>.</span></span>
           </h2>
-          <p class="work__intro">
-            十二件移动影像 —— 商业广告、悬疑短片、MV 与 MG 动画，导演、拍摄与剪辑均由本人或本人参与的团队制作独立完成。<br/>
-            Twelve moving-image pieces: brand films, shorts, music videos &amp; motion design — directed, shot and cut by me, or by teams I worked with.
-          </p>
+          <p class="work__intro">十二件影像作品，涵盖商业广告、悬疑短片、音乐影像与动态图形动画，由本人独立或参与团队完成导演、拍摄与剪辑。</p>
         </header>
 
         <ul class="cards" id="cards">
@@ -164,16 +161,14 @@
                        disablepictureinpicture></video>
                 <div class="card__overlay"></div>
                 <div class="card__sheen"></div>
-                <span class="card__badge"><i></i>Motion · Looping</span>
+                <span class="card__badge"><i></i>循环预览</span>
               </figure>
               <div class="card__meta">
-                <span class="card__num">01 · Brand Film</span>
+                <span class="card__num">01 · 品牌广告</span>
                 <div class="card__txt">
-                  <h3>RIO 微醺 — Quiet Hours</h3>
-                  <p>Brand film · Bubbles, breath &amp; a tipsy hour · 2026</p>
-                  <p class="card__desc">
-                    A rhythmic slice for the low-ABV sparkling brand RIO. Built around the mood of a "tipsy moment" — rising bubbles, light on glass, and beat-matched cuts that breathe. Less about drinking, more about holding on to a night that feels just right.
-                  </p>
+                  <h3>锐澳微醺 — 静谧时光</h3>
+                  <p>品牌广告 · 气泡与微醺时刻 · 2026</p>
+                  <p class="card__desc">以升起的气泡、玻璃上的光线与贴合音乐的剪辑，记录一个恰到好处的微醺夜晚。</p>
                 </div>
                 <span class="card__arrow">
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -184,7 +179,7 @@
 
           <!-- 02 — 苏可安 -->
           <li class="card" data-tilt data-i="02" data-fullvideo="assets/videos/suken-full.mp4"
-              data-fulltitle="苏可安 — 一刻柔光 · Full Film"
+              data-fulltitle="苏可安 — 一刻柔光 · 完整影片"
               data-preview="https://images.unsplash.com/photo-1522335789203-aaa2f6c10d8e?w=1600&q=80&auto=format&fit=crop">
             <a class="card__link" href="#" data-cursor="view">
               <figure class="card__media">
@@ -195,16 +190,14 @@
                        disablepictureinpicture></video>
                 <div class="card__overlay"></div>
                 <div class="card__sheen"></div>
-                <span class="card__badge"><i></i>Full film · Click to enlarge</span>
+                <span class="card__badge"><i></i>点击观看完整影片</span>
               </figure>
               <div class="card__meta">
-                <span class="card__num">02 · Brand Film</span>
+                <span class="card__num">02 · 品牌广告</span>
                 <div class="card__txt">
                   <h3>苏可安 — 一刻柔光</h3>
-                  <p>Commercial · A moment of herbal soft light · 2025</p>
-                  <p class="card__desc">
-                    The full commercial for Suken. Titled "A Moment of Soft Light", it opens with the first natural light of morning, moves into macro textures of the product, and lands on a gentle dialogue between herbal ingredients and skin. Grading deliberately lowers saturation and lifts softness, making "gentle repair" something you can actually see.
-                  </p>
+                  <p>商业广告 · 草本与晨光 · 2025</p>
+                  <p class="card__desc">从清晨的自然光到产品的细微质感，以低饱和色调和柔和光线，呈现草本成分与肌肤之间的温柔对话。</p>
                 </div>
                 <span class="card__arrow">
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -215,7 +208,7 @@
 
           <!-- 03 — 毓婷 -->
           <li class="card" data-tilt data-i="03" data-fullvideo="assets/videos/yuting-full.mp4"
-              data-fulltitle="毓婷 — Yumeilii · Full Film"
+              data-fulltitle="毓婷 — 毓美丽 · 完整影片"
               data-preview="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1600&q=80&auto=format&fit=crop">
             <a class="card__link" href="#" data-cursor="view">
               <figure class="card__media">
@@ -226,16 +219,14 @@
                        disablepictureinpicture></video>
                 <div class="card__overlay"></div>
                 <div class="card__sheen"></div>
-                <span class="card__badge"><i></i>Full film · Click to enlarge</span>
+                <span class="card__badge"><i></i>点击观看完整影片</span>
               </figure>
               <div class="card__meta">
-                <span class="card__num">03 · Brand Film</span>
+                <span class="card__num">03 · 品牌广告</span>
                 <div class="card__txt">
-                  <h3>毓婷 — Yumeilii 毓美丽</h3>
-                  <p>Commercial · Softness &amp; resolve · 1′36″ full film</p>
-                  <p class="card__desc">
-                    The full 1'36" brand film for Yuting "Yumeilii". It plays on a dual temperament of softness and resolve — restrained, delicate lensing under a soft-light grade, wrapped around a steady narrative spine. An attempt to give a women's wellness film real strength, outside the usual pastel grammar of the category.
-                  </p>
+                  <h3>毓婷 — 毓美丽</h3>
+                  <p>商业广告 · 柔软与坚定 · 完整影片 1分36秒</p>
+                  <p class="card__desc">以克制细腻的镜头、柔光色调与稳定的叙事，呈现柔软与坚定并存的女性力量。</p>
                 </div>
                 <span class="card__arrow">
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -246,7 +237,7 @@
 
           <!-- 04 — 校园宣传片 -->
           <li class="card card--wide" data-tilt data-i="04" data-fullvideo="assets/videos/campus-promo-full.mp4"
-              data-fulltitle="Campus Promotion Film — 融媒体中心 · Full Film"
+              data-fulltitle="校园宣传片 — 融媒体中心 · 完整影片"
               data-preview="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1600&q=80&auto=format&fit=crop">
             <a class="card__link" href="#" data-cursor="view">
               <figure class="card__media">
@@ -257,16 +248,14 @@
                        disablepictureinpicture></video>
                 <div class="card__overlay"></div>
                 <div class="card__sheen"></div>
-                <span class="card__badge"><i></i>Full film · Click to enlarge</span>
+                <span class="card__badge"><i></i>点击观看完整影片</span>
               </figure>
               <div class="card__meta">
-                <span class="card__num">04 · Campus Film</span>
+                <span class="card__num">04 · 校园影像</span>
                 <div class="card__txt">
-                  <h3>Campus Promotion Film — 融媒体中心</h3>
-                  <p>Campus film · Seasons, corridors &amp; people · 8′30″ full film</p>
-                  <p class="card__desc">
-                    An 8'30" campus promotion film made for the university media center. Four seasons set the timeline; patient long takes link classrooms, corridors and the real people inside them. The edit keeps deliberate room to breathe — no stacked drone shots, no slogans — letting "studying here" speak for itself.
-                  </p>
+                  <h3>校园宣传片 — 融媒体中心</h3>
+                  <p>校园影像 · 四季、走廊与人 · 完整影片 8分30秒</p>
+                  <p class="card__desc">以四季为时间线，用长镜头串联教室、走廊与校园中的真实人物，让学习与生活的日常自然呈现。</p>
                 </div>
                 <span class="card__arrow">
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -277,7 +266,7 @@
 
           <!-- 05 — 悬疑短片 -->
           <li class="card" data-tilt data-i="05" data-fullvideo="assets/videos/suspense-235959.mp4"
-              data-fulltitle="23:59:59 — Suspense Short · Full Film"
+              data-fulltitle="23:59:59 — 悬疑短片 · 完整影片"
               data-preview="https://images.unsplash.com/photo-1611605698335-8b1569810432?w=1600&q=80&auto=format&fit=crop">
             <a class="card__link" href="#" data-cursor="view">
               <figure class="card__media">
@@ -288,16 +277,14 @@
                        disablepictureinpicture></video>
                 <div class="card__overlay"></div>
                 <div class="card__sheen"></div>
-                <span class="card__badge"><i></i>Full film · Click to enlarge</span>
+                <span class="card__badge"><i></i>点击观看完整影片</span>
               </figure>
               <div class="card__meta">
-                <span class="card__num">05 · Short Film</span>
+                <span class="card__num">05 · 剧情短片</span>
                 <div class="card__txt">
-                  <h3>23:59:59 — Suspense Short</h3>
-                  <p>Suspense short · One minute on the clock · 2025</p>
-                  <p class="card__desc">
-                    A suspense short built on the last minute before midnight. A clock, a door left ajar, light that keeps failing — three elements compressed into a sixty-second countdown. The cutting tightens with every tick of the second hand, probing how the certainty of running out of time turns into dread of the unknown.
-                  </p>
+                  <h3>23:59:59 — 悬疑短片</h3>
+                  <p>悬疑短片 · 午夜前的一分钟 · 2025</p>
+                  <p class="card__desc">将时钟、虚掩的门与明灭不定的灯光压缩进六十秒倒计时，随着剪辑逐渐收紧，呈现对未知的恐惧。</p>
                 </div>
                 <span class="card__arrow">
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -308,7 +295,7 @@
 
           <!-- 06 — 毕业宣传片 AIGC -->
           <li class="card card--tall" data-tilt data-i="06" data-fullvideo="assets/videos/aigc-promo.mp4"
-              data-fulltitle="Graduation Promo — AIGC Pipeline · Full Film"
+              data-fulltitle="毕业宣传片 — 人工智能创作 · 完整影片"
               data-preview="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=1600&q=80&auto=format&fit=crop">
             <a class="card__link" href="#" data-cursor="view">
               <figure class="card__media">
@@ -319,16 +306,14 @@
                        disablepictureinpicture></video>
                 <div class="card__overlay"></div>
                 <div class="card__sheen"></div>
-                <span class="card__badge"><i></i>Full film · Click to enlarge</span>
+                <span class="card__badge"><i></i>点击观看完整影片</span>
               </figure>
               <div class="card__meta">
-                <span class="card__num">06 · AIGC Film</span>
+                <span class="card__num">06 · 生成式影像</span>
                 <div class="card__txt">
-                  <h3>Graduation Promo — AIGC</h3>
-                  <p>Graduation promo · Full AIGC pipeline · 2026</p>
-                  <p class="card__desc">
-                    A graduation-themed promo produced through a full AIGC pipeline — storyboards, image generation and final assembly all run through an AI toolchain, with two generated segments joined on rhythm. A complete acceptance test of my own AI film workflow: not just using the tools, but making the tools understand the breathing of an edit.
-                  </p>
+                  <h3>毕业宣传片 — 人工智能创作</h3>
+                  <p>毕业宣传片 · 人工智能辅助制作 · 2026</p>
+                  <p class="card__desc">从分镜、图像生成到最终剪辑，通过人工智能工具串联完整制作流程，并以节奏衔接生成的影像片段。</p>
                 </div>
                 <span class="card__arrow">
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -339,7 +324,7 @@
 
           <!-- 07 — 推理短剧MV -->
           <li class="card" data-tilt data-i="07" data-fullvideo="assets/videos/mystery-mv.mp4"
-              data-fulltitle="Mystery MV — 推理短剧 · Full Film"
+              data-fulltitle="推理短剧 — 音乐影像 · 完整影片"
               data-preview="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1600&q=80&auto=format&fit=crop">
             <a class="card__link" href="#" data-cursor="view">
               <figure class="card__media">
@@ -350,16 +335,14 @@
                        disablepictureinpicture></video>
                 <div class="card__overlay"></div>
                 <div class="card__sheen"></div>
-                <span class="card__badge"><i></i>Full film · Click to enlarge</span>
+                <span class="card__badge"><i></i>点击观看完整影片</span>
               </figure>
               <div class="card__meta">
-                <span class="card__num">07 · Music Video</span>
+                <span class="card__num">07 · 音乐影像</span>
                 <div class="card__txt">
-                  <h3>Mystery MV — 推理短剧</h3>
-                  <p>Mystery-drama MV · Rhythm in the shadows · 2K · 2026</p>
-                  <p class="card__desc">
-                    A mystery-drama music video in 2K. Shadow, partial close-ups and alternating fast-slow lensing translate suspense into music visual language: the chorus lands on quick cuts of evidence flashbacks, while the quiet passages are left to a slow push-in. Here deduction is not just plot — it is a grammar of editing.
-                  </p>
+                  <h3>推理短剧 — 音乐影像</h3>
+                  <p>音乐影像 · 阴影中的节奏 · 2026</p>
+                  <p class="card__desc">以阴影、局部特写与快慢交替的镜头，将悬疑转化为音乐影像语言，让推理成为剪辑节奏的一部分。</p>
                 </div>
                 <span class="card__arrow">
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -370,7 +353,7 @@
 
           <!-- 08 — 动漫MV -->
           <li class="card" data-tilt data-i="08" data-fullvideo="assets/videos/anime-mv.mp4"
-              data-fulltitle="Anime MV — Motion Visual · Full Film"
+              data-fulltitle="动漫音乐影像 — 动态视觉实验 · 完整影片"
               data-preview="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1600&q=80&auto=format&fit=crop">
             <a class="card__link" href="#" data-cursor="view">
               <figure class="card__media">
@@ -381,16 +364,14 @@
                        disablepictureinpicture></video>
                 <div class="card__overlay"></div>
                 <div class="card__sheen"></div>
-                <span class="card__badge"><i></i>Full film · Click to enlarge</span>
+                <span class="card__badge"><i></i>点击观看完整影片</span>
               </figure>
               <div class="card__meta">
-                <span class="card__num">08 · Music Video</span>
+                <span class="card__num">08 · 音乐影像</span>
                 <div class="card__txt">
-                  <h3>Anime MV — Motion Visual</h3>
-                  <p>Anime MV · Motion-visual experiment · 2K · 2026</p>
-                  <p class="card__desc">
-                    A 2K anime motion-visual experiment, spliced from two sources: motion illustration and img2video footage. It probes how 2D characters live under real camera logic — push-pulls, depth of field and bokeh invited into the illustrated world. A technical trial at making paper come alive.
-                  </p>
+                  <h3>动漫音乐影像 — 动态视觉实验</h3>
+                  <p>动漫影像 · 动态视觉探索 · 2026</p>
+                  <p class="card__desc">结合动态插画与图像生成视频，将推拉镜头、景深与散景带入插画世界，探索二维角色的动态表达。</p>
                 </div>
                 <span class="card__arrow">
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -401,7 +382,7 @@
 
           <!-- 09 — 北京地标建筑MG动画 -->
           <li class="card" data-tilt data-i="09" data-fullvideo="assets/videos/beijing-mg.mp4"
-              data-fulltitle="Beijing Landmarks MG · 北京地标建筑MG动画 · Full Film"
+              data-fulltitle="北京地标 — 动态图形动画 · 完整影片"
               data-preview="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1600&q=80&auto=format&fit=crop">
             <a class="card__link" href="#" data-cursor="view">
               <figure class="card__media">
@@ -412,16 +393,14 @@
                        disablepictureinpicture></video>
                 <div class="card__overlay"></div>
                 <div class="card__sheen"></div>
-                <span class="card__badge"><i></i>Full film · Click to enlarge</span>
+                <span class="card__badge"><i></i>点击观看完整影片</span>
               </figure>
               <div class="card__meta">
-                <span class="card__num">09 · Motion Design</span>
+                <span class="card__num">09 · 动态图形</span>
                 <div class="card__txt">
-                  <h3>Beijing Landmarks MG — 北京地标</h3>
-                  <p>Motion design · Landmarks drawn in lines · 2025</p>
-                  <p class="card__desc">
-                    An MG animation of Beijing landmarks. Drawn lines and graphic transitions stitch the city together — buildings morph into one another through geometric deformation, and old and new architecture grow from the same sheet of paper. A systematic exercise in motion-design grammar: making information move with order.
-                  </p>
+                  <h3>北京地标 — 动态图形动画</h3>
+                  <p>动态图形 · 用线条描绘城市 · 2025</p>
+                  <p class="card__desc">以线条、几何形变与图形转场串联北京地标，让新旧建筑在同一画面中生长，探索有秩序的动态表达。</p>
                 </div>
                 <span class="card__arrow">
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -432,7 +411,7 @@
 
           <!-- 10 — 宝矿力创意广告切片 -->
           <li class="card" data-tilt data-i="10" data-fullvideo="assets/videos/japanese-summer-friends.mp4"
-              data-fulltitle="Pocari Sweat — 宝矿力创意广告 · Full Version"
+              data-fulltitle="宝矿力 — 创意广告 · 完整影片"
               data-preview="https://images.unsplash.com/photo-1523362628745-0c100150b504?w=1600&q=80&auto=format&fit=crop">
             <a class="card__link" href="#" data-cursor="view">
               <figure class="card__media">
@@ -443,16 +422,14 @@
                        disablepictureinpicture></video>
                 <div class="card__overlay"></div>
                 <div class="card__sheen"></div>
-                <span class="card__badge"><i></i>Full film · Click to enlarge</span>
+                <span class="card__badge"><i></i>点击观看完整影片</span>
               </figure>
               <div class="card__meta">
-                <span class="card__num">10 · Ad Slice</span>
+                <span class="card__num">10 · 创意广告</span>
                 <div class="card__txt">
-                  <h3>Pocari Sweat — 宝矿力</h3>
-                  <p>Creative ad slice · Summer, sweat &amp; blue · 2026</p>
-                  <p class="card__desc">
-                    A Pocari Sweat creative slice borrowing the imagery of a Japanese summer: youth, sweat and great fields of blue. The camera rides the rise and fall of a running breath, electrolyte bubbles become the only "effect" on screen — the refill moment shot as a short chronicle of youth.
-                  </p>
+                  <h3>宝矿力 — 创意广告</h3>
+                  <p>广告片段 · 夏日、汗水与蓝色 · 2026</p>
+                  <p class="card__desc">借用日式夏日的青春意象，以奔跑的呼吸、汗水与大片蓝色，记录运动后补充能量的瞬间。</p>
                 </div>
                 <span class="card__arrow">
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -463,7 +440,7 @@
 
           <!-- 11 — 活动快闪花絮剪辑 -->
           <li class="card" data-tilt data-i="11" data-fullvideo="assets/videos/event-flash-blue.mp4"
-              data-fulltitle="Event Flash · 活动快闪花絮 · Full Film"
+              data-fulltitle="活动快闪 — 现场花絮 · 完整影片"
               data-preview="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1600&q=80&auto=format&fit=crop">
             <a class="card__link" href="#" data-cursor="view">
               <figure class="card__media">
@@ -474,16 +451,14 @@
                        disablepictureinpicture></video>
                 <div class="card__overlay"></div>
                 <div class="card__sheen"></div>
-                <span class="card__badge"><i></i>Full film · Click to enlarge</span>
+                <span class="card__badge"><i></i>点击观看完整影片</span>
               </figure>
               <div class="card__meta">
-                <span class="card__num">11 · Behind the Scenes</span>
+                <span class="card__num">11 · 幕后花絮</span>
                 <div class="card__txt">
-                  <h3>Event Flash — 活动快闪</h3>
-                  <p>Highlight edit · Blue-toned flash of energy · 2025</p>
-                  <p class="card__desc">
-                    A blue-toned event highlight edit. One filter unifies the room's color temperature while beat-matched cuts compress time — from doors opening to the last echo of the crowd. The full emotional arc of a live event packed into one short reel; highlights are not leftovers, they are the second main film of the night.
-                  </p>
+                  <h3>活动快闪 — 现场花絮</h3>
+                  <p>花絮剪辑 · 蓝色调的现场活力 · 2025</p>
+                  <p class="card__desc">以统一的蓝色调和贴合节拍的剪辑，浓缩从开场到散场的情绪变化，呈现活动现场的完整氛围。</p>
                 </div>
                 <span class="card__arrow">
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -494,7 +469,7 @@
 
           <!-- 12 — 水果乐队歌曲MV切片 -->
           <li class="card" data-tilt data-i="12" data-fullvideo="assets/videos/fruit-band-mv.mp4"
-              data-fulltitle="Fruit Band MV · 水果乐队歌曲MV · Full Version"
+              data-fulltitle="水果乐队 — 歌曲影像 · 完整影片"
               data-preview="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1600&q=80&auto=format&fit=crop">
             <a class="card__link" href="#" data-cursor="view">
               <figure class="card__media">
@@ -505,16 +480,14 @@
                        disablepictureinpicture></video>
                 <div class="card__overlay"></div>
                 <div class="card__sheen"></div>
-                <span class="card__badge"><i></i>Full film · Click to enlarge</span>
+                <span class="card__badge"><i></i>点击观看完整影片</span>
               </figure>
               <div class="card__meta">
-                <span class="card__num">12 · Music Video</span>
+                <span class="card__num">12 · 音乐影像</span>
                 <div class="card__txt">
-                  <h3>Fruit Band MV — 水果乐队</h3>
-                  <p>Song MV slice · A band &amp; their fruit reverie · 2026</p>
-                  <p class="card__desc">
-                    A slice of a Fruit Band music video. Saturated color and jumpy cuts echo the song's playful reverie — fruit plays instrument, prop and stage lead, performing alongside the band. A seriously unserious film, and my most relaxed edit to date.
-                  </p>
+                  <h3>水果乐队 — 歌曲影像</h3>
+                  <p>歌曲片段 · 乐队与水果的奇想 · 2026</p>
+                  <p class="card__desc">用饱和色彩与跳跃剪辑呼应歌曲的趣味，让水果成为乐器、道具与舞台主角，营造轻松的影像表达。</p>
                 </div>
                 <span class="card__arrow">
                   <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -526,7 +499,7 @@
         </ul>
 
         <a class="work__viewall magnetic" href="#" data-cursor="link">
-          <span>View archive · 早期作品 / 服装效果图</span>
+          <span>早期作品 / 服装效果图</span>
           <svg viewBox="0 0 24 24" width="18" height="18"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </section>
@@ -534,65 +507,59 @@
       <!-- BRANDS / STUDIES MARQUEE — 极简一行兴趣 -->
       <section class="marquee marquee--brands" aria-hidden="true">
         <div class="marquee__track brands">
-          <span>Fashion design</span><span class="m-dot">✺</span>
-          <span>Draping</span><span class="m-dot">✺</span>
-          <span>Video editing</span><span class="m-dot">✺</span>
-          <span>Motion design</span><span class="m-dot">✺</span>
-          <span>AIGC workflow</span><span class="m-dot">✺</span>
-          <span>Color grading</span><span class="m-dot">✺</span>
-          <span>Art direction</span><span class="m-dot">✺</span>
-          <span>Fashion design</span><span class="m-dot">✺</span>
-          <span>Draping</span><span class="m-dot">✺</span>
-          <span>Video editing</span><span class="m-dot">✺</span>
-          <span>Motion design</span><span class="m-dot">✺</span>
-          <span>AIGC workflow</span><span class="m-dot">✺</span>
-          <span>Color grading</span><span class="m-dot">✺</span>
-          <span>Art direction</span><span class="m-dot">✺</span>
+          <span>服装设计</span><span class="m-dot">✺</span>
+          <span>立体裁剪</span><span class="m-dot">✺</span>
+          <span>视频剪辑</span><span class="m-dot">✺</span>
+          <span>动态图形</span><span class="m-dot">✺</span>
+          <span>人工智能创作</span><span class="m-dot">✺</span>
+          <span>影像调色</span><span class="m-dot">✺</span>
+          <span>美术指导</span><span class="m-dot">✺</span>
+          <span>服装设计</span><span class="m-dot">✺</span>
+          <span>立体裁剪</span><span class="m-dot">✺</span>
+          <span>视频剪辑</span><span class="m-dot">✺</span>
+          <span>动态图形</span><span class="m-dot">✺</span>
+          <span>人工智能创作</span><span class="m-dot">✺</span>
+          <span>影像调色</span><span class="m-dot">✺</span>
+          <span>美术指导</span><span class="m-dot">✺</span>
         </div>
       </section>
 
 <!-- HONORS — 极简, 不再是简历 -->
       <section class="honors" id="honors">
         <header class="section__head">
-          <span class="label">Honors · 02 / 荣誉</span>
-          <h2 class="section__title" data-split-chars>
-            <span class="line"><span class="inner">A few things</span></span>
-            <span class="line"><span class="inner">I <em>learned</em> from.</span></span>
-          </h2>
+          <span class="label">02 / 荣誉</span>
+          <h2 class="section__title" data-split-chars><span class="line"><span class="inner">荣誉与经历</span></span></h2>
         </header>
 
         <ul class="honors__list">
           <li class="honors__item" data-cursor="link">
             <span class="honors__year">2025</span>
-            <span class="honors__name">One Show College Award · Finalist / Communication runner-up</span>
+            <span class="honors__name">青年创意奖 · 入围 / 传播类亚军</span>
             <span class="honors__arrow">↗</span>
           </li>
           <li class="honors__item" data-cursor="link">
             <span class="honors__year">2025</span>
-            <span class="honors__name">College Award · Recognized level prize (brand film)</span>
+            <span class="honors__name">学院奖 · 品牌广告获奖</span>
             <span class="honors__arrow">↗</span>
           </li>
           <li class="honors__item" data-cursor="link">
             <span class="honors__year">2024 — </span>
-            <span class="honors__name">Campus Media Centre · Visual &amp; short-form (200K+ plays)</span>
+            <span class="honors__name">校园融媒体中心 · 视觉与短视频创作（播放量逾20万）</span>
             <span class="honors__arrow">↗</span>
           </li>
           <li class="honors__item" data-cursor="link">
             <span class="honors__year">2023 — 24</span>
-            <span class="honors__name">Douyin IP Ops · K12 education account</span>
+            <span class="honors__name">抖音账号运营 · 中小学教育领域</span>
             <span class="honors__arrow">↗</span>
           </li>
         </ul>
-        <p class="honors__note">Complete list &amp; certificates on request · 完整清单与证书可索取</p>
+        <p class="honors__note">完整清单与证书可索取</p>
       </section>
 
       <!-- CONTACT — 一句话 + 一个按钮 -->
       <section class="contact" id="contact">
-        <span class="label contact__label">Contact · 03 / 联络</span>
-        <h2 class="contact__title" data-split-chars>
-          <span class="line"><span class="inner">Want to swap a</span></span>
-          <span class="line"><span class="inner"><em>sketchbook</em>?</span></span>
-        </h2>
+        <span class="label contact__label">03 / 联系</span>
+        <h2 class="contact__title" data-split-chars><span class="line"><span class="inner">一起交流</span></span><span class="line"><span class="inner">新的创意。</span></span></h2>
         <a class="btn btn--big magnetic" href="mailto:Wqr050330@outlook.com" data-cursor="link">
           <span class="btn__label">Wqr050330@outlook.com</span>
           <span class="btn__arrow">
@@ -601,35 +568,35 @@
         </a>
 
         <ul class="contact__elsewhere">
-          <li><a href="#" data-cursor="link">RED</a></li>
-          <li><a href="#" data-cursor="link">Douyin</a></li>
-          <li><a href="#" data-cursor="link">Bilibili</a></li>
-          <li><a href="#" data-cursor="link">Behance</a></li>
+          <li><a href="#" data-cursor="link">小红书</a></li>
+          <li><a href="#" data-cursor="link">抖音</a></li>
+          <li><a href="#" data-cursor="link">哔哩哔哩</a></li>
+          <li><a href="#" data-cursor="link">创意社区</a></li>
         </ul>
       </section>
     </main>
 
     <!-- FOOTER 极简 -->
     <footer class="footer">
-      <a href="#top" class="footer__back magnetic" data-cursor="link" aria-label="Back to top">
-        <span>Back to top · 回顶</span>
+      <a href="#top" class="footer__back magnetic" data-cursor="link" aria-label="返回顶部">
+        <span>返回顶部</span>
         <span class="footer__back-arrow">↑</span>
       </a>
-      <span class="footer__copy">© 2026 王清榕 QingRong Wang — Personal Portfolio · 个人作品集</span>
-      <span class="footer__time" id="time">南宁, 00:00 GMT+8</span>
+      <span class="footer__copy">© 2026 王清榕 · 个人作品集</span>
+      <span class="footer__time" id="time">南宁 · 00:00</span>
     </footer>
 
   </div><!-- /.page -->
 
   <!-- LIGHTBOX: 点击作品卡放大播放完整影片 -->
-  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Video viewer">
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="视频播放器">
     <div class="lightbox__backdrop" data-lightbox-close></div>
     <figure class="lightbox__stage">
       <video class="lightbox__video" id="lightboxVideo" controls playsinline preload="metadata"></video>
       <figcaption class="lightbox__caption">
         <span class="lightbox__title" id="lightboxTitle"></span>
-        <button class="lightbox__close magnetic" data-lightbox-close data-cursor="link" aria-label="Close">
-          <span>Close · 关闭</span>
+        <button class="lightbox__close magnetic" data-lightbox-close data-cursor="link" aria-label="关闭">
+          <span>关闭</span>
           <svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         </button>
       </figcaption>

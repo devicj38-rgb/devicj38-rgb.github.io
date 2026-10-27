@@ -509,7 +509,7 @@ const reduce   = () => window.matchMedia('(prefers-reduced-motion: reduce)').mat
   });
   const render = () => {
     const t = fmt.format(new Date());
-    el.textContent = `南宁 Nanning · ${t} GMT+8`;
+    el.textContent = `南宁 · ${t}`;
   };
   render();
   setInterval(render, 30 * 1000);
